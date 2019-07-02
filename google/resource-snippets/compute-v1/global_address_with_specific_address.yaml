@@ -12,12 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-{% set FOLDER_NAME = env["name"] %}
-
+imports:
+- path: global_address.jinja
 
 resources:
-  - name: my-folder
-    type: gcp-types/cloudresourcemanager-v2:folders
-    properties:
-      parent: {{ properties["folderParent"] }}
-      displayName: {{ FOLDER_NAME }}
+- name: globaladdress
+  type: global_address.jinja
+  properties:
+    address: 10.118.64.0
+    prefixLength: 20
+    addressType: INTERNAL
+    purpose: VPC_PEERING
+    network: DEFAULT_NETWORK
